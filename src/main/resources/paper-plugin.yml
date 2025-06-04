@@ -1,0 +1,6 @@
+name: LogPlayerAction_paper
+version: '1.0.1'
+main: me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper
+api-version: '1.20'
+authors: [wowkfccc(wow肯德雞爺爺欸)]
+description: A player action  system
