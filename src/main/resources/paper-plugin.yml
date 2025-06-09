@@ -2,5 +2,20 @@ name: LogPlayerAction_paper
 version: '1.0.1'
 main: me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper
 api-version: '1.20'
-authors: [wowkfccc(wow肯德雞爺爺欸)]
+authors: [ wowkfccc(wow肯德雞爺爺欸) ]
 description: A player action  system
+engine: [paper, folia]
+folia-supported: true
+commands:
+  logplayeraction:
+    description: 主指令 (reload / time_reset)
+    usage: /<command> [reload|time_reset]
+permissions:
+  logplayeraction.reload:
+    description: 重新載入設定
+    default: op
+  logplayeraction.time_reset:
+    description: 重置玩家計時器
+    default: op
+softdepend:
+  - Essentials

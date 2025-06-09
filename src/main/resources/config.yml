@@ -1,0 +1,20 @@
+database:
+  enable: true
+  # only support mySQL
+  type: mySQL
+  # default port 3306
+  port: 3306
+  database: your_database
+  #default localhost
+  host: localhost
+  username: user
+  password: pw
+  insert_interval: 3600 # time in seconds to insert data into database
+
+Enable:
+  AFK: true
+  Balance: true
+
+# Command /logplayeraction reload to reload config.yml
+# Command /logplayeraction time_reset <player/all> to reset timer
+
