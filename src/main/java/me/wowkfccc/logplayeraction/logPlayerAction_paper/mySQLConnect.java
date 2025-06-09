@@ -155,10 +155,11 @@ public class mySQLConnect {
         String database = plugin.getConfig().getString("database.database");
         String user = plugin.getConfig().getString("database.username");
         String pass = plugin.getConfig().getString("database.password");
+        boolean useSSL = plugin.getConfig().getBoolean("SSL.enable", false);
 
         String jdbcUrl = String.format(
-                "jdbc:mysql://%s:%d/%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
-                host, port, database
+                "jdbc:mysql://%s:%d/%s?useSSL=%b&allowPublicKeyRetrieval=true&serverTimezone=UTC",
+                host, port, database, useSSL
         );
 
         HikariConfig cfg = new HikariConfig();

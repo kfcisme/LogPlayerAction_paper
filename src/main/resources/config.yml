@@ -15,6 +15,12 @@ Enable:
   AFK: true
   Balance: true
 
+SSL:
+    enable: false
+    # if enable is true, you must set the path to the certificate file
+    certificate_path: /path/to/certificate.pem
+
 # Command /logplayeraction reload to reload config.yml
 # Command /logplayeraction time_reset <player/all> to reset timer
+
 
