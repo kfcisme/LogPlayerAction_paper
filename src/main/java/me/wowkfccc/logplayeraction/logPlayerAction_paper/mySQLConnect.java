@@ -209,7 +209,7 @@ public class mySQLConnect {
     public void disconnect() {
         if (ds != null && !ds.isClosed()) {
             ds.close();
-            plugin.getLogger().info("MySQL connection pool closed");
+            plugin.getLogger().info("MySQL connection pool close");
         }
     }
 }
