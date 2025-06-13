@@ -45,7 +45,7 @@ public class onEntityPickupItem implements Listener {
         playerEntityPickupItemCount.put(playerId, playerEntityPickupItemCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + entity.getName() + " EntityPickupItemCount: " + playerEntityPickupItemCount.get(playerId));
+    //    Bukkit.getLogger().info("Player " + entity.getName() + " EntityPickupItemCount: " + playerEntityPickupItemCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -58,13 +58,13 @@ public class onEntityPickupItem implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerEntityPickupItemCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total EntityPickupItemCount: " + entry.getValue());
+      //          Bukkit.getLogger().info("Player " + player.getName() + " total EntityPickupItemCount: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerEntityPickupItemCount.remove(playerId);
-        Bukkit.getLogger().info("All player EntityPickupItem counters have been reset.");
+     //   Bukkit.getLogger().info("All player EntityPickupItem counters have been reset.");
     }
 }
 

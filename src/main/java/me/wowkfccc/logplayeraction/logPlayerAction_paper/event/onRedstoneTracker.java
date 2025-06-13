@@ -102,7 +102,7 @@ public class onRedstoneTracker implements Listener {
         if (redstoneMaterials.contains(type)) {
             // 如果是紅石相關方塊，增加計數
             PlayerRedstoneTargged.put(playerid, PlayerRedstoneTargged.getOrDefault(playerid, 0) + 1);
-            Bukkit.getLogger().info("Player " + player.getName() + " placed redstone block count: " + PlayerRedstoneTargged.get(playerid));
+        //    Bukkit.getLogger().info("Player " + player.getName() + " placed redstone block count: " + PlayerRedstoneTargged.get(playerid));
 
             // 在這裡可以開始一個追蹤 Session
             // startSession(playerid, 20 * 60); // 假設追蹤 1 分鐘
@@ -120,13 +120,13 @@ public class onRedstoneTracker implements Listener {
         for (Map.Entry<UUID, Integer> entry : PlayerRedstoneTargged.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total PlayerExpChange count: " + entry.getValue());
+           //     Bukkit.getLogger().info("Player " + player.getName() + " total PlayerExpChange count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         PlayerRedstoneTargged.remove(playerId);
-        Bukkit.getLogger().info("All player PlayerExpChange counters have been reset.");
+      //  Bukkit.getLogger().info("All player PlayerExpChange counters have been reset.");
     }
 }
 

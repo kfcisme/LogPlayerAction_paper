@@ -44,7 +44,7 @@ public class onEntityDeath implements Listener {
         playerEntityDamageCount.put(playerId, playerEntityDamageCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + entity.getName() + " EntityDamageCount: " + playerEntityDamageCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + entity.getName() + " EntityDamageCount: " + playerEntityDamageCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -57,13 +57,13 @@ public class onEntityDeath implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerEntityDamageCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total EntityDamageCount: " + entry.getValue());
+        //        Bukkit.getLogger().info("Player " + player.getName() + " total EntityDamageCount: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerEntityDamageCount.remove(playerId);
-        Bukkit.getLogger().info("All player EntityDamageCounters have been reset.");
+     //   Bukkit.getLogger().info("All player EntityDamageCounters have been reset.");
     }
 }
 

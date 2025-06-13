@@ -49,6 +49,7 @@ public class mySQLInsertData {
                 + "`teleport` INT NOT NULL DEFAULT 0, "
                 + "`ChunkLoad` INT NOT NULL DEFAULT 0, "
                 + "`redstone` INT NOT NULL DEFAULT 0, "
+                + "`AFKtime` LONG NOT NULL DEFAULT 0L, "
                 + "PRIMARY KEY (`record_time`)"
                 + ")";
         plugin.getLogger().info("Creating table: " + tableName);
@@ -80,8 +81,8 @@ public class mySQLInsertData {
                 + "block_place, craft, dmg_by_entity, death, explosion, furnace_extract, "
                 + "inv_close, inv_open, bucket_empty, bucket_fill, cmd_pre, cmd_send, "
                 + "player_death, item_drop, exp_change, interact, level_change, quit, "
-                + "respawn, teleport, ChunkLoad, redstone"
-                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "respawn, teleport, ChunkLoad, redstone, AFKtime"
+                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 //        plugin.getLogger().info("database insert success");
         try (Connection conn = mySQL.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -114,6 +115,7 @@ public class mySQLInsertData {
             ps.setInt(26, c.teleport);
             ps.setInt(27, c.chunkLoadCounts);
             ps.setInt(28, c.redstoneCounts);
+            ps.setLong(29, c.afktime);
 //            plugin.getLogger().info("database insert success");
 //            ps.executeUpdate();
 //            UUID playerId = UUID.fromString(tableName);

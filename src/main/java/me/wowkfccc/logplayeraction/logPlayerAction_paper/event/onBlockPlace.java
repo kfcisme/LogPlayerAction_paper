@@ -39,7 +39,7 @@ public class onBlockPlace implements Listener {
         playerBlockPlaceCount.put(playerId, playerBlockPlaceCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " Block Place count: " + playerBlockPlaceCount.get(playerId));
+      //  Bukkit.getLogger().info("Player " + player.getName() + " Block Place count: " + playerBlockPlaceCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -52,12 +52,12 @@ public class onBlockPlace implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerBlockPlaceCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total Block Place count: " + entry.getValue());
+          //      Bukkit.getLogger().info("Player " + player.getName() + " total Block Place count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerBlockPlaceCount.remove(playerId);
-        Bukkit.getLogger().info("All player Block Place counters have been reset.");
+     //   Bukkit.getLogger().info("All player Block Place counters have been reset.");
     }
 }

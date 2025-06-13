@@ -42,7 +42,7 @@ public class onEntityDamageByEntity implements Listener {
         playerEntityDamageByEntityCount.put(playerId, playerEntityDamageByEntityCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + entity.getName() + " Entity Damage By Entity count: " + playerEntityDamageByEntityCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + entity.getName() + " Entity Damage By Entity count: " + playerEntityDamageByEntityCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -55,13 +55,13 @@ public class onEntityDamageByEntity implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerEntityDamageByEntityCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total Entity Damage By Entity count: " + entry.getValue());
+       //         Bukkit.getLogger().info("Player " + player.getName() + " total Entity Damage By Entity count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerEntityDamageByEntityCount.remove(playerId);
-        Bukkit.getLogger().info("All player Entity Damage By Entity counters have been reset.");
+      //  Bukkit.getLogger().info("All player Entity Damage By Entity counters have been reset.");
     }
 }
 

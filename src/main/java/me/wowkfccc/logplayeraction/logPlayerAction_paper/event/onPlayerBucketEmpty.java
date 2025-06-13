@@ -42,7 +42,7 @@ public class onPlayerBucketEmpty implements Listener {
         playerPlayerBucketEmptyCount.put(playerId, playerPlayerBucketEmptyCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " PlayerBucketEmpty count: " + playerPlayerBucketEmptyCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + player.getName() + " PlayerBucketEmpty count: " + playerPlayerBucketEmptyCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -55,12 +55,12 @@ public class onPlayerBucketEmpty implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerPlayerBucketEmptyCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total PlayerBucketEmpty count: " + entry.getValue());
+         //       Bukkit.getLogger().info("Player " + player.getName() + " total PlayerBucketEmpty count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerPlayerBucketEmptyCount.remove(playerId);
-        Bukkit.getLogger().info("All player PlayerBucketEmpty counters have been reset.");
+     //   Bukkit.getLogger().info("All player PlayerBucketEmpty counters have been reset.");
     }
 }

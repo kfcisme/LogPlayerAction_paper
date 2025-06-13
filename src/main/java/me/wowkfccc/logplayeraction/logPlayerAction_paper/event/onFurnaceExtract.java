@@ -41,7 +41,7 @@ public class onFurnaceExtract implements Listener {
         playerFurnaceExtractCount.put(playerId, playerFurnaceExtractCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " FurnaceExtract count: " + playerFurnaceExtractCount.get(playerId));
+      //  Bukkit.getLogger().info("Player " + player.getName() + " FurnaceExtract count: " + playerFurnaceExtractCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -54,13 +54,13 @@ public class onFurnaceExtract implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerFurnaceExtractCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total FurnaceExtract count: " + entry.getValue());
+          //      Bukkit.getLogger().info("Player " + player.getName() + " total FurnaceExtract count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerFurnaceExtractCount.remove(playerId);
-        Bukkit.getLogger().info("All player FurnaceExtract counters have been reset.");
+    //    Bukkit.getLogger().info("All player FurnaceExtract counters have been reset.");
     }
 }
 

@@ -30,12 +30,12 @@ public class onBlockMultiPlace implements Listener {
         Player player = event.getPlayer();
         UUID playerId = player.getUniqueId();
         multiPlaceCounts.put(playerId, multiPlaceCounts.getOrDefault(playerId, 0) + 1);
-        Bukkit.getLogger().info("Player " + player.getName() + " multi-place count: " + multiPlaceCounts.get(playerId));
+       // Bukkit.getLogger().info("Player " + player.getName() + " multi-place count: " + multiPlaceCounts.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
         int v = multiPlaceCounts.getOrDefault(playerId, 0);
-        Bukkit.getLogger().info("DEBUG multiPlace SendInsertData for " + playerId + ": " + v);
+      //  Bukkit.getLogger().info("DEBUG multiPlace SendInsertData for " + playerId + ": " + v);
         return v;
     }
 
@@ -44,10 +44,10 @@ public class onBlockMultiPlace implements Listener {
         for (Map.Entry<UUID, Integer> entry : multiPlaceCounts.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total multi-place count: " + entry.getValue());
+          //      Bukkit.getLogger().info("Player " + player.getName() + " total multi-place count: " + entry.getValue());
             }
         }
         multiPlaceCounts.remove(playerId);
-        Bukkit.getLogger().info("All player multi-place counters have been reset.");
+      //  Bukkit.getLogger().info("All player multi-place counters have been reset.");
     }
 }

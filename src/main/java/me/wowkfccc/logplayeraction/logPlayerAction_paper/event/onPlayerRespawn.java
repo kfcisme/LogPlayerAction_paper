@@ -42,7 +42,7 @@ public class onPlayerRespawn implements Listener {
         playerRespawnCount.put(playerId, playerRespawnCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " playerRespawn count: " + playerRespawnCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + player.getName() + " playerRespawn count: " + playerRespawnCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -55,12 +55,12 @@ public class onPlayerRespawn implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerRespawnCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total playerRespawn count: " + entry.getValue());
+            //    Bukkit.getLogger().info("Player " + player.getName() + " total playerRespawn count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerRespawnCount.remove(playerId);
-        Bukkit.getLogger().info("All player playerRespawn counters have been reset.");
+      //  Bukkit.getLogger().info("All player playerRespawn counters have been reset.");
     }
 }

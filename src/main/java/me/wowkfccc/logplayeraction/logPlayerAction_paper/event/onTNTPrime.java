@@ -43,11 +43,11 @@ public class onTNTPrime implements Listener {
         playerTNTPrimeCount.put(playerId, playerTNTPrimeCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " playerTNTPrime count: " + playerTNTPrimeCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + player.getName() + " playerTNTPrime count: " + playerTNTPrimeCount.get(playerId));
     }
     public static int SendInsertData(UUID playerId){
         int v = playerTNTPrimeCount.getOrDefault(playerId, 0);
-        Bukkit.getLogger().info("DEBUG multiPlace SendInsertData for " + playerId + ": " + v);
+     //   Bukkit.getLogger().info("DEBUG multiPlace SendInsertData for " + playerId + ": " + v);
         return v;
     }
 
@@ -57,12 +57,12 @@ public class onTNTPrime implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerTNTPrimeCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " playerTNTPrime count: " + entry.getValue());
+         //       Bukkit.getLogger().info("Player " + player.getName() + " playerTNTPrime count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerTNTPrimeCount.remove(playerId);
-        Bukkit.getLogger().info("All player playerTNTPrime counters have been reset.");
+      //  Bukkit.getLogger().info("All player playerTNTPrime counters have been reset.");
     }
 }

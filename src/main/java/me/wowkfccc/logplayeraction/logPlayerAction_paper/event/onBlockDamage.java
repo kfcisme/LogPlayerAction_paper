@@ -39,7 +39,7 @@ public class onBlockDamage implements Listener {
         playerBlockDamageCount.put(playerId, playerBlockDamageCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " Block Damage count: " + playerBlockDamageCount.get(playerId));
+       // Bukkit.getLogger().info("Player " + player.getName() + " Block Damage count: " + playerBlockDamageCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -52,12 +52,12 @@ public class onBlockDamage implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerBlockDamageCount.entrySet()) {
 //            Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total Block Damage count: " + entry.getValue());
+           //     Bukkit.getLogger().info("Player " + player.getName() + " total Block Damage count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerBlockDamageCount.remove(playerId);
-        Bukkit.getLogger().info("All player Block Damage counters have been reset.");
+   //     Bukkit.getLogger().info("All player Block Damage counters have been reset.");
     }
 }

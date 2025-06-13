@@ -36,7 +36,7 @@ public class onExplosionPrime implements Listener {
                 Player player = (Player) tnt.getSource();
                 UUID playerId = player.getUniqueId();
                 explosionPrimeCounts.put(playerId, explosionPrimeCounts.getOrDefault(playerId, 0) + 1);
-                Bukkit.getLogger().info("Player " + player.getName() + " primed TNT count: " + explosionPrimeCounts.get(playerId));
+          //      Bukkit.getLogger().info("Player " + player.getName() + " primed TNT count: " + explosionPrimeCounts.get(playerId));
             }
         }
     }
@@ -50,10 +50,10 @@ public class onExplosionPrime implements Listener {
             for (Map.Entry<UUID, Integer> entry : explosionPrimeCounts.entrySet()) {
                 //Player player = Bukkit.getPlayer(entry.getKey());
                 if (player != null) {
-                    Bukkit.getLogger().info("Player " + player.getName() + " total TNT prime count: " + entry.getValue());
+              //      Bukkit.getLogger().info("Player " + player.getName() + " total TNT prime count: " + entry.getValue());
                 }
             }
             explosionPrimeCounts.remove(playerId);
-            Bukkit.getLogger().info("All player TNT prime counters have been reset.");
+      //      Bukkit.getLogger().info("All player TNT prime counters have been reset.");
         }
 }

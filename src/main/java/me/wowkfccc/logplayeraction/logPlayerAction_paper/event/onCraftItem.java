@@ -34,7 +34,7 @@ public class onCraftItem implements Listener {
             Player player = (Player) event.getWhoClicked();
             UUID playerId = player.getUniqueId();
             craftCounts.put(playerId, craftCounts.getOrDefault(playerId, 0) + 1);
-            Bukkit.getLogger().info("Player " + player.getName() + " craft item count: " + craftCounts.get(playerId));
+          //  Bukkit.getLogger().info("Player " + player.getName() + " craft item count: " + craftCounts.get(playerId));
         }
     }
 
@@ -47,10 +47,10 @@ public class onCraftItem implements Listener {
         for (Map.Entry<UUID, Integer> entry : craftCounts.entrySet()) {
 //            Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total craft item count: " + entry.getValue());
+             //   Bukkit.getLogger().info("Player " + player.getName() + " total craft item count: " + entry.getValue());
             }
         }
         craftCounts.remove(playerId);
-        Bukkit.getLogger().info("All player craft item counters have been reset.");
+   //     Bukkit.getLogger().info("All player craft item counters have been reset.");
     }
 }

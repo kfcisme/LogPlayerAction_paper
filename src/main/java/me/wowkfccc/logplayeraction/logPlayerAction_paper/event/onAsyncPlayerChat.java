@@ -39,7 +39,7 @@ public class onAsyncPlayerChat implements Listener {
         playerChatTime.put(playerId, playerChatTime.getOrDefault(playerId, 0) + 1);
 
         // Log the current chat time for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " chat time: " + playerChatTime.get(playerId) + " seconds.");
+       // Bukkit.getLogger().info("Player " + player.getName() + " chat time: " + playerChatTime.get(playerId) + " seconds.");
     }
 
     public static int SendInsertData(UUID playerId){
@@ -52,12 +52,12 @@ public class onAsyncPlayerChat implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerChatTime.entrySet()) {
 
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total chat time: " + entry.getValue() + " seconds.");
+              //  Bukkit.getLogger().info("Player " + player.getName() + " total chat time: " + entry.getValue() + " seconds.");
             }
         }
 
         // Clear the counters
         playerChatTime.remove(playerId);
-        Bukkit.getLogger().info("All player chat counters have been reset.");
+       // Bukkit.getLogger().info("All player chat counters have been reset.");
     }
 }

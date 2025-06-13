@@ -44,7 +44,7 @@ public class onPlayerCommandSend implements Listener {
         playerPlayerCommandSendCount.put(playerId, playerPlayerCommandSendCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " PlayerCommandSend count: " + playerPlayerCommandSendCount.get(playerId));
+    //    Bukkit.getLogger().info("Player " + player.getName() + " PlayerCommandSend count: " + playerPlayerCommandSendCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -56,13 +56,13 @@ public class onPlayerCommandSend implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerPlayerCommandSendCount.entrySet()) {
             Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total PlayerCommandSend count: " + entry.getValue());
+      //          Bukkit.getLogger().info("Player " + player.getName() + " total PlayerCommandSend count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerPlayerCommandSendCount.remove(playerId);
-        Bukkit.getLogger().info("All player PlayerCommandSend counters have been reset.");
+        //Bukkit.getLogger().info("All player PlayerCommandSend counters have been reset.");
     }
 }
 

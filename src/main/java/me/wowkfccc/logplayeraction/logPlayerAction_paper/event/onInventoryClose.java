@@ -43,7 +43,7 @@ public class onInventoryClose implements Listener {
         playerInventoryCloseCount.put(playerId, playerInventoryCloseCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + humanEntity.getName() + " InventoryClose count: " + playerInventoryCloseCount.get(playerId));
+      //  Bukkit.getLogger().info("Player " + humanEntity.getName() + " InventoryClose count: " + playerInventoryCloseCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -55,7 +55,7 @@ public class onInventoryClose implements Listener {
         Player player = Bukkit.getPlayer(playerId);
         for (Map.Entry<UUID, Integer> entry : playerInventoryCloseCount.entrySet()) {
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total InventoryClose count: " + entry.getValue());
+          //      Bukkit.getLogger().info("Player " + player.getName() + " total InventoryClose count: " + entry.getValue());
             }
         }
 
@@ -63,6 +63,6 @@ public class onInventoryClose implements Listener {
         playerInventoryCloseCount.remove(playerId);
 
         String nameOrId = (player != null ? player.getName() : playerId.toString());
-        Bukkit.getLogger().info("InventoryClose counter for " + nameOrId + " has been reset.");
+    //    Bukkit.getLogger().info("InventoryClose counter for " + nameOrId + " has been reset.");
     }
 }

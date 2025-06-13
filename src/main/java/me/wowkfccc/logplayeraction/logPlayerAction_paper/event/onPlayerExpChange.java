@@ -32,7 +32,7 @@ public class onPlayerExpChange implements Listener {
         playerPlayerExpChangeCount.put(playerId, playerPlayerExpChangeCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " PlayerExpChange count: " + playerPlayerExpChangeCount.get(playerId));
+      //  Bukkit.getLogger().info("Player " + player.getName() + " PlayerExpChange count: " + playerPlayerExpChangeCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -45,12 +45,12 @@ public class onPlayerExpChange implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerPlayerExpChangeCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total PlayerExpChange count: " + entry.getValue());
+        //        Bukkit.getLogger().info("Player " + player.getName() + " total PlayerExpChange count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerPlayerExpChangeCount.remove(playerId);
-        Bukkit.getLogger().info("All player PlayerExpChange counters have been reset.");
+        //Bukkit.getLogger().info("All player PlayerExpChange counters have been reset.");
     }
 }

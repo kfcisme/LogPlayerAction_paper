@@ -75,6 +75,6 @@ public class PlayerChunkLoadListener implements Listener {
 //            }
         }
         chunkLoadCounts.remove(playerId);
-        Bukkit.getLogger().info("All player chunk load counts have been reset.");
+       // Bukkit.getLogger().info("All player chunk load counts have been reset.");
     }
 }

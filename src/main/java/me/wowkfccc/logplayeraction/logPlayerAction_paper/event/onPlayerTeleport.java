@@ -42,7 +42,7 @@ public class onPlayerTeleport implements Listener {
         playerTeleportCount.put(playerId, playerTeleportCount.getOrDefault(playerId, 0) + 1);
 
         // Log the current block break count for the player
-        Bukkit.getLogger().info("Player " + player.getName() + " playerTeleport count: " + playerTeleportCount.get(playerId));
+     //   Bukkit.getLogger().info("Player " + player.getName() + " playerTeleport count: " + playerTeleportCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -55,12 +55,12 @@ public class onPlayerTeleport implements Listener {
         for (Map.Entry<UUID, Integer> entry : playerTeleportCount.entrySet()) {
             //Player player = Bukkit.getPlayer(entry.getKey());
             if (player != null) {
-                Bukkit.getLogger().info("Player " + player.getName() + " total playerTeleport count: " + entry.getValue());
+        //        Bukkit.getLogger().info("Player " + player.getName() + " total playerTeleport count: " + entry.getValue());
             }
         }
 
         // Clear the counters
         playerTeleportCount.remove(playerId);
-        Bukkit.getLogger().info("All player playerTeleport counters have been reset.");
+     //   Bukkit.getLogger().info("All player playerTeleport counters have been reset.");
     }
 }
