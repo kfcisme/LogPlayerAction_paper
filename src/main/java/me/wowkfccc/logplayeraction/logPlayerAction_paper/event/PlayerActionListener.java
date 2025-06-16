@@ -46,7 +46,7 @@ public class PlayerActionListener implements Listener {
     public int teleportCounts = 0;
     public int chunkLoadCounts = 0;
     public int redstoneCounts = 0;
-    public long afktime = 0L;
+    public int afktime = 0;
 
 
     public PlayerActionListener(LogPlayerAction_paper plugin) {
@@ -154,7 +154,7 @@ public class PlayerActionListener implements Listener {
         public final int teleport;
         public final int chunkLoadCounts;
         public final int redstoneCounts;
-        public final long afktime;
+        public final int afktime;
 
         public EventCounts(
                 int pickup,
@@ -185,7 +185,7 @@ public class PlayerActionListener implements Listener {
                 int teleport,
                 int chunkLoadCounts,
                 int redstoneCounts,
-                long afktime
+                int afktime
         ) {
             this.pickup = pickup;
             this.blockBreak = blockBreak;

@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import java.util.HashMap;
@@ -34,15 +35,15 @@ public class onPlayerCommandPreprocess implements Listener {
     }
 
     @EventHandler
-    public void onPlayerCommandPreprocess(PlayerBucketFillEvent event) {
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         UUID playerId = player.getUniqueId();
 
-        // Increment the player's block break counter
-        playerPlayerCommandPreprocessCount.put(playerId, playerPlayerCommandPreprocessCount.getOrDefault(playerId, 0) + 1);
+        playerPlayerCommandPreprocessCount.put(playerId,
+                playerPlayerCommandPreprocessCount.getOrDefault(playerId, 0) + 1);
 
-        // Log the current block break count for the player
-     //   Bukkit.getLogger().info("Player " + player.getName() + " PlayerCommandPreprocess count: " + playerPlayerCommandPreprocessCount.get(playerId));
+        // Bukkit.getLogger().info("Player " + player.getName() + " command count: " +
+        //     playerPlayerCommandPreprocessCount.get(playerId));
     }
 
     public static int SendInsertData(UUID playerId){
@@ -50,17 +51,7 @@ public class onPlayerCommandPreprocess implements Listener {
     }
 
     public static void resetCounters(UUID playerId) {
-        // Log the counters before resetting
-        for (Map.Entry<UUID, Integer> entry : playerPlayerCommandPreprocessCount.entrySet()) {
-            Player player = Bukkit.getPlayer(entry.getKey());
-            if (player != null) {
-            //    Bukkit.getLogger().info("Player " + player.getName() + " total PlayerCommandPreprocess count: " + entry.getValue());
-            }
-        }
-
-        // Clear the counters
         playerPlayerCommandPreprocessCount.remove(playerId);
-     //   Bukkit.getLogger().info("All player PlayerCommandPreprocess counters have been reset.");
     }
 }
 

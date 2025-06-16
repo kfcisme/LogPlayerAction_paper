@@ -49,7 +49,7 @@ public class mySQLInsertData {
                 + "`teleport` INT NOT NULL DEFAULT 0, "
                 + "`ChunkLoad` INT NOT NULL DEFAULT 0, "
                 + "`redstone` INT NOT NULL DEFAULT 0, "
-                + "`AFKtime` LONG NOT NULL DEFAULT 0L, "
+                + "`AFKtime` INT NOT NULL DEFAULT 0, "
                 + "PRIMARY KEY (`record_time`)"
                 + ")";
         plugin.getLogger().info("Creating table: " + tableName);
@@ -115,11 +115,7 @@ public class mySQLInsertData {
             ps.setInt(26, c.teleport);
             ps.setInt(27, c.chunkLoadCounts);
             ps.setInt(28, c.redstoneCounts);
-            ps.setLong(29, c.afktime);
-//            plugin.getLogger().info("database insert success");
-//            ps.executeUpdate();
-//            UUID playerId = UUID.fromString(tableName);
-//            PlayerActionListener.ResetCounters(uuid);
+            ps.setInt(29, c.afktime);
             int rows = ps.executeUpdate();  // 真正去執行
                 plugin.getLogger().info("✅ 資料庫插入成功，重置玩家計數器：" + uuid);
                 // 用正確的變數呼叫

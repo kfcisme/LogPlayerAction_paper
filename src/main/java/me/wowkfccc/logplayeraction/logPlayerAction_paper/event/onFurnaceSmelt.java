@@ -1,5 +1,5 @@
-//package me.wowkfccc.logplayeraction.logplayeraction.event;
-//import me.wowkfccc.logplayeraction.logplayeraction.Logplayeraction;
+//package me.wowkfccc.logplayeraction.logPlayerAction_paper.event;
+//import me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper;
 //import org.bukkit.Bukkit;
 //import org.bukkit.entity.HumanEntity;
 //import org.bukkit.entity.Player;
@@ -13,10 +13,10 @@
 //import java.util.UUID;
 //
 //public class onFurnaceSmelt implements Listener {
-//    private final Logplayeraction plugin;
+//    private final LogPlayerAction_paper plugin;
 //    private final Map<UUID, Integer> furnaceSmeltCounts = new HashMap<>();
 //
-//    public onFurnaceSmelt(Logplayeraction plugin) {
+//    public onFurnaceSmelt(LogPlayerAction_paper plugin) {
 //        this.plugin = plugin;
 //        int timer = plugin.getConfig().getInt("database.insert_interval", 3600);
 //        new BukkitRunnable() {
