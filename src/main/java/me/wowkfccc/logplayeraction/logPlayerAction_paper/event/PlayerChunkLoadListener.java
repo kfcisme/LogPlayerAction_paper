@@ -53,10 +53,10 @@ public class PlayerChunkLoadListener implements Listener {
         int count = chunkLoadCounts.getOrDefault(playerId, 0) + 1;
         chunkLoadCounts.put(playerId, count);
 
-        plugin.getLogger().info("Player " + player.getName()
-                + " chunk crosses = " + count
-                + ", view-distance = " + viewDistance
-                + ", theoretical chunk count = " + theoreticalChunkCount);
+//        plugin.getLogger().info("Player " + player.getName()
+//                + " chunk crosses = " + count
+//                + ", view-distance = " + viewDistance
+//                + ", theoretical chunk count = " + theoreticalChunkCount);
     }
 
     public static int SendInsertData(UUID playerId){
