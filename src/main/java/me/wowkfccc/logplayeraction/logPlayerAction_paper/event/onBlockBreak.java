@@ -47,7 +47,7 @@ public class onBlockBreak implements Listener {
         return playerBlockBreakCount.getOrDefault(playerId, 0);
     }
 
-    public void resetCounters(UUID playerId) {
+    public static void resetCounters(UUID playerId) {
         // Log the counters before resetting
         Player player = Bukkit.getPlayer(playerId);
         for (Map.Entry<UUID, Integer> entry : playerBlockBreakCount.entrySet()) {

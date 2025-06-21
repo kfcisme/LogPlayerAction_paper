@@ -1,31 +1,29 @@
 package me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin;
 
-import me.wowkfccc.logplayeraction.logplayeraction.event.plugin.API.EssentialsHook;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.EssentialsHook;
 import net.ess3.api.events.AfkStatusChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper;
-import com.earth2me.essentials.Essentials;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class onEssentialsAFK implements Listener {
     private final LogPlayerAction_paper plugin;
-    private final Map<UUID, Integer> afkCounts = new HashMap<>();
-    // 記錄玩家進入 AFK 的時間戳（毫秒）
-    private final Map<UUID, Integer> afkStartTime = new HashMap<>();
+    private final EssentialsHook hook;
 
+    // 記錄玩家進入 AFK 的時間戳 (用 long 才不會溢位)
+    private final Map<UUID, Long> afkStartTime = new HashMap<>();
     // 累積每位玩家的 AFK 時數（秒）
     public static final Map<UUID, Integer> afkTotalSeconds = new HashMap<>();
 
-
     public onEssentialsAFK(LogPlayerAction_paper plugin, EssentialsHook essentialsHook) {
         this.plugin = plugin;
+        this.hook   = essentialsHook;
     }
 
     @EventHandler
@@ -34,16 +32,12 @@ public class onEssentialsAFK implements Listener {
         UUID uuid = player.getUniqueId();
         boolean isAfk = event.getValue();
 
-
         if (isAfk) {
-            afkStartTime.put(uuid, (int) System.currentTimeMillis());
+            afkStartTime.put(uuid, System.currentTimeMillis());
         } else if (afkStartTime.containsKey(uuid)) {
-            int start = afkStartTime.remove(uuid);
-            int durationSec = ((int) System.currentTimeMillis() - start) / 1000;
-            afkTotalSeconds.put(
-                    uuid,
-                    afkTotalSeconds.getOrDefault(uuid, 0) + durationSec
-            );
+            long start = afkStartTime.remove(uuid);
+            int durationSec = (int)((System.currentTimeMillis() - start) / 1000);
+            afkTotalSeconds.put(uuid, afkTotalSeconds.getOrDefault(uuid, 0) + durationSec);
         }
     }
     public int getAfkTotalSeconds(UUID uuid) {

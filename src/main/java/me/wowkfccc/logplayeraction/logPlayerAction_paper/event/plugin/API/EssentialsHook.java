@@ -1,4 +1,4 @@
-package me.wowkfccc.logplayeraction.logplayeraction.event.plugin.API;
+package me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;

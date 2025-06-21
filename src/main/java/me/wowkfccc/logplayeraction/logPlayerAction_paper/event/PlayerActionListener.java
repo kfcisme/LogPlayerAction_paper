@@ -123,6 +123,7 @@ public class PlayerActionListener implements Listener {
         PlayerChunkLoadListener.resetChunkLoadCounts(playerId);
         onRedstoneTracker.resetCounters(playerId);
         onEssentialsAFK.resetCounters(playerId);
+        onBlockBreak.resetCounters(playerId);
     }
 
     public static class EventCounts {

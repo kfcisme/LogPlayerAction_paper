@@ -1,28 +1,15 @@
 package me.wowkfccc.logplayeraction.logPlayerAction_paper;
 
-//import com.earth2me.essentials.Essentials;
-//import com.earth2me.essentials.api.Economy;
-import com.destroystokyo.paper.utils.PaperPluginLogger;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.onEssentialsAFK;
-import me.wowkfccc.logplayeraction.logplayeraction.event.plugin.API.EssentialsHook;
-//import me.wowkfccc.logplayeraction.logplayeraction.event.plugin.onEssentialsAFK;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.*;
-import me.wowkfccc.logplayeraction.logPlayerAction_paper.commandmanager;
-//import io.papermc.paper.plugin.PaperPlugin;
-import java.awt.print.Paper;
-import java.util.List;
-import com.earth2me.essentials.Essentials;
-import net.ess3.api.events.AfkStatusChangeEvent;
+
 
 public final class LogPlayerAction_paper extends JavaPlugin {
 
 
         private boolean databaseEnable;
-        private me.wowkfccc.logplayeraction.logplayeraction.event.plugin.API.EssentialsHook essentialsHook;
+        private me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.EssentialsHook essentialsHook;
         private boolean Essentials;
         private mySQLConnect mySQL;
         private boolean AFKEnable;
@@ -70,75 +57,29 @@ public final class LogPlayerAction_paper extends JavaPlugin {
             getServer().getPluginManager().registerEvents(actionListener, this);
             this.eventListener();
             sessionListener.cancelAllTasks();
-
-//            if(getConfig().getBoolean("Enable.AFK", false)) {
-//                try {
-//                    essentialsHook = new EssentialsHook(this);
-//                    getLogger().info("✔ 已透過反射 Hook Essentials v" +
-//                            essentialsHook.getClass().getPackage().getImplementationVersion());
-//                    getServer().getPluginManager().registerEvents(
-//                            new onEssentialsAFK(this, essentialsHook),
-//                            this
-//                    );
-//                    getLogger().info("✔ 已註冊 AFK 計數監聽器");
-//                } catch (ClassNotFoundException e) {
-//                    getLogger().info("Essentials 不存在，跳過經濟整合");
-//                } catch (Exception e) {
-//                    getLogger().warning("Essentials Hook 失敗：" + e.getMessage());
-//                }
-//            }
-//            if (getConfig().getBoolean("Enable.AFK", false)) {
-//                getServer().getGlobalRegionScheduler().runDelayed(this, task -> {
-//                    try {
-//                        // 確保 Essentials 插件存在
-//                        if (getServer().getPluginManager().getPlugin("EssentialsX") == null ||
-//                                !getServer().getPluginManager().getPlugin("EssentialsX").isEnabled()) {
-//                            getLogger().info("EssentialsX 尚未啟用，跳過 AFK 功能");
-//                            return;
-//                        }
-//
-//                        // 僅在這裡動態載入該 class
-//                        Class<?> afkClass = Class.forName("net.ess3.api.events.AfkStatusChangeEvent");
-//
-//                        // 所有引用 onEssentialsAFK 的動作也放在這裡，確保延遲觸發
-//                        essentialsHook = new EssentialsHook(this);
-//                        Object afkListener = Class.forName("me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.onEssentialsAFK")
-//                                .getConstructor(JavaPlugin.class, EssentialsHook.class)
-//                                .newInstance(this, essentialsHook);
-//
-//                        getServer().getPluginManager().registerEvents((org.bukkit.event.Listener) afkListener, this);
-//                        getLogger().info("✔ 成功註冊 AFK 功能");
-//
-//                    } catch (ClassNotFoundException e) {
-//                        getLogger().warning("找不到 Essentials AFK 類別，跳過");
-//                    } catch (Throwable e) {
-//                        getLogger().warning("AFK 模組初始化失敗：" + e.getMessage());
-//                    }
-//                }, 20L);
-//            }
-            PluginManager pm = getServer().getPluginManager();
+            boolean hasEssentials = getServer().getPluginManager().getPlugin("Essentials") != null;
+            getLogger().info("Essentials 是否啟用: " + hasEssentials);
             boolean afkEnabled = getConfig().getBoolean("Enable.AFK", false);
-            boolean hasEssentials = pm.isPluginEnabled("Essentials") || pm.isPluginEnabled("EssentialsX");
-            getLogger().info("讀到 Enable.AFK = " + afkEnabled);
-            getLogger().info("Essentials loaded? Essentials="
-                    + pm.isPluginEnabled("Essentials")
-                    + ", EssentialsX=" + pm.isPluginEnabled("EssentialsX"));
+            if (getConfig().getBoolean("Enable.AFK", false) && hasEssentials) {
+                getServer().getPluginManager().registerEvents(
+                        new onEssentialsAFK(this, essentialsHook),
+                        this
+                );
 
-            if (afkEnabled && hasEssentials) {
-                try {
-                    EssentialsHook hook = new EssentialsHook(this);
-                    onEssentialsAFK listener = new onEssentialsAFK(this, hook);
-                    pm.registerEvents(listener, this);
-                    getLogger().info("✔ 已註冊 AFK 監聽器");
-                } catch (Exception e) {
-                    getLogger().warning("⚠ AFK 模組初始化失敗：" + e.getMessage());
-                }
-            } else {
-                getLogger().info("⚠ 跳過 AFK 功能註冊");
+                getLogger().info("✔ 已註冊 AFK 計數監聽器");
             }
-
-
-
+//            if (afkEnabled && hasEssentials) {
+//                try {
+//                    EssentialsHook hook = new EssentialsHook(this);
+//                    onEssentialsAFK listener = new onEssentialsAFK(this, hook);
+//                    pm.registerEvents(listener, this);
+//                    getLogger().info("✔ register AFK listener");
+//                } catch (Exception e) {
+//                    getLogger().warning("⚠ AFK 模組初始化失敗：" + e.getMessage());
+//                }
+//            } else {
+//                getLogger().info("⚠ skip EssentialsX AFK ");
+//            }
         }
 
         @Override
@@ -199,14 +140,14 @@ public final class LogPlayerAction_paper extends JavaPlugin {
             return databaseEnable;
         }
 
-        public Object getEssEconomy() {
-            if (essentialsHook == null) return null;
-            try {
-                return essentialsHook.getEconomy();
-            } catch (Exception e) {
-                getLogger().warning("取 Essentials Economy 失敗：" + e.getMessage());
-                return null;
-            }
-        }
+//        public Object getEssEconomy() {
+//            if (essentialsHook == null) return null;
+//            try {
+//                return essentialsHook.getEconomy();
+//            } catch (Exception e) {
+//                getLogger().warning("取 Essentials Economy 失敗：" + e.getMessage());
+//                return null;
+//            }
+//        }
 
 }
