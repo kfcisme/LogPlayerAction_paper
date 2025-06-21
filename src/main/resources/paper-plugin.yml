@@ -17,5 +17,4 @@ permissions:
   logplayeraction.time_reset:
     description: 重置玩家計時器
     default: op
-softdepend:
-  - Essentials
+depend: [Essentials]
