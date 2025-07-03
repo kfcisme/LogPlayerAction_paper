@@ -53,39 +53,7 @@ public class PlayerSessionListener implements Listener {
         mySQLInsert.createPlayerTable(table);
 
 
-//        if (!PlatformScheduler.IS_FOLIA){
-//            plugin.getLogger().info("You are using paper or spigot, using BukkitTask");
-//            if (sessionTasks.containsKey(id)) {
-//                sessionTasks.get(id).cancel();
-//                sessionTasks.remove(id);
-//            }
-//            BukkitTask task = plugin.getServer().getScheduler().runTaskTimer(
-//                plugin,
-//                () -> {
-//                    PlayerActionListener.EventCounts counts = actionListener.getAndResetCounts(id);
-//
-//                    if (plugin.isDatabaseEnable() && counts.pickup + counts.blockBreak + counts.chat + counts.blockDamage + counts.blockPlace + counts.bucketFill + counts.bucketEmpty > 0) {
-//                        plugin.getLogger().info(
-//                                "正在為玩家 " + p.getName() + " 寫入行為資料："
-//                                        + "break=" + counts.blockBreak
-//                                        + ", place=" + counts.blockPlace
-//                                        + " … 共" + (
-//                                        counts.pickup + counts.blockBreak + counts.blockPlace /*…*/
-//                                ) + " 項");
-//                        try {
-//                            mySQLInsert.insertEventCounts(id, counts);
-//                        } catch (Exception ex) {
-//                            plugin.getLogger().warning("寫入資料庫失敗，請檢查資料庫連線設定");
-//                            ex.printStackTrace();
-//                        }
-//                    }
-//                },
-//                sessionSeconds * 20L,
-//                sessionSeconds * 20L
-//       );
-//        sessionTasks.put(id, task);
-//        }
-//        else{
+
             plugin.getLogger().info("You are using folia, using ScheduledTask");
             if (foliaSessionTasks.containsKey(id)) {
                 foliaSessionTasks.get(id).cancel();

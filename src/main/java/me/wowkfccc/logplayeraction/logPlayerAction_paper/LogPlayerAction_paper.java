@@ -1,27 +1,40 @@
 package me.wowkfccc.logplayeraction.logPlayerAction_paper;
 
-import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.onEssentialsAFK;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.AFKActivityListener;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.AFKManager;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.*;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.*;
+
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 
 public final class LogPlayerAction_paper extends JavaPlugin {
 
 
         private boolean databaseEnable;
-//        private me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.EssentialsHook essentialsHook;
         private boolean Essentials;
         private mySQLConnect mySQL;
         private boolean AFKEnable;
-        //private final PlayerActionListener actionListener = new PlayerActionListener();
         private PlayerActionListener actionListener;
         private mySQLInsertData mySQLInsert;
-//        private Economy economy;
-//        private Essentials essentials;
         private static me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper instance;
-//        private com.earth2me.essentials.api.Economy essEconomy;
 
+    private final Map<UUID, Integer> afkCounts = new HashMap<>();
+    // 記錄玩家進入 AFK 的時間戳（毫秒）
+    private final Map<UUID, Integer> afkStartTime = new HashMap<>();
+
+    // 累積每位玩家的 AFK 時數（秒）
+    public static final Map<UUID, Integer> afkTotalSeconds = new HashMap<>();
         @Override
         public void onEnable() {
             instance = this;
@@ -58,44 +71,26 @@ public final class LogPlayerAction_paper extends JavaPlugin {
             getServer().getPluginManager().registerEvents(actionListener, this);
             this.eventListener();
             sessionListener.cancelAllTasks();
-            Plugin essentials = getServer().getPluginManager().getPlugin("Essentials");
+            getServer().getPluginManager().registerEvents(new AFKActivityListener(), this);
+                if (getConfig().getBoolean("Enable.AFK", false) ) {
+//                    getServer().getGlobalRegionScheduler().runAtFixedRate(
+//                            this,
+//                            task -> onEssentialsAFK.tickAll(),
+//                            20L, 20L // 延遲1秒啟動，每秒執行一次
+//                    ); // 每秒跑一次
+//                    getServer().getPluginManager().registerEvents(new AFKActivityListener(), this);
+                    getServer().getGlobalRegionScheduler().runAtFixedRate(
+                            this,
+                            task ->
+                                AFKManager.checkAllAfk()
+                            ,
+                            2L,20L
+                    );
 
-            getServer().getGlobalRegionScheduler().runDelayed(this, scheduledTask -> {
-                boolean hasEssentials = getServer().getPluginManager().getPlugin("Essentials") != null;
-                getLogger().info("Essentials 是否啟用: " + essentials.isEnabled());
-                boolean afkEnabled = getConfig().getBoolean("Enable.AFK", false);
-                if (getConfig().getBoolean("Enable.AFK", false) && essentials.isEnabled()) {
-
-                    try {
-                        Class<?> afkClass = Class.forName(
-                                "net.ess3.api.events.AfkStatusChangeEvent",
-                                true,
-                                essentials.getClass().getClassLoader()  // ← 用這個 Plugin 的 classloader
-                        );
-                        getLogger().info("Successful loaded EssentialsX AFK class " );
-                        // 註冊 listener
-                    } catch (ClassNotFoundException e) {
-                        getLogger().warning("❌ EssentialsX 存在但不支援 AFK 事件");
-                    }
-
-                    onEssentialsAFK listener = new onEssentialsAFK(this);
-                    listener.onAfkStatusChange(this);
-                    getLogger().info("✔ 已註冊 AFK 計數監聽器");
+                    // 註冊行為監聽器
+                    getServer().getPluginManager().registerEvents(new onEssentialsAFK(), this);
                 }
-            },20L);
 
-//            if (afkEnabled && hasEssentials) {
-//                try {
-//                    EssentialsHook hook = new EssentialsHook(this);
-//                    onEssentialsAFK listener = new onEssentialsAFK(this, hook);
-//                    pm.registerEvents(listener, this);
-//                    getLogger().info("✔ register AFK listener");
-//                } catch (Exception e) {
-//                    getLogger().warning("⚠ AFK 模組初始化失敗：" + e.getMessage());
-//                }
-//            } else {
-//                getLogger().info("⚠ skip EssentialsX AFK ");
-//            }
         }
 
         @Override
@@ -145,9 +140,6 @@ public final class LogPlayerAction_paper extends JavaPlugin {
             this.getServer().getPluginManager().registerEvents(new onRedstoneTracker(this), this);
         }
 
-        //public static Logplayeraction getInstance() {
-        //return JavaPlugin.getPlugin(Logplayeraction.class);
-        //}
         public static me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper getInstance() {return JavaPlugin.getPlugin(me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper.class);}
         private void commcand() {
         }
@@ -155,15 +147,4 @@ public final class LogPlayerAction_paper extends JavaPlugin {
         public boolean isDatabaseEnable() {
             return databaseEnable;
         }
-
-//        public Object getEssEconomy() {
-//            if (essentialsHook == null) return null;
-//            try {
-//                return essentialsHook.getEconomy();
-//            } catch (Exception e) {
-//                getLogger().warning("取 Essentials Economy 失敗：" + e.getMessage());
-//                return null;
-//            }
-//        }
-
 }

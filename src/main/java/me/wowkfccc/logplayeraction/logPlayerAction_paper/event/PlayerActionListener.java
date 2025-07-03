@@ -2,6 +2,8 @@
 package me.wowkfccc.logplayeraction.logPlayerAction_paper.event;
 
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.LogPlayerAction_paper;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.AFKActivityListener;
+import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.API.AFKManager;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.plugin.onEssentialsAFK;
 //import me.wowkfccc.logplayeraction.logplayeraction.Logplayeraction;
 import me.wowkfccc.logplayeraction.logPlayerAction_paper.event.*;
@@ -86,7 +88,7 @@ public class PlayerActionListener implements Listener {
                 teleportCounts = onPlayerTeleport.SendInsertData(playerId),
                 chunkLoadCounts = PlayerChunkLoadListener.SendInsertData(playerId),
                 redstoneCounts = onRedstoneTracker.SendInsertData(playerId),
-                afktime = onEssentialsAFK.SendInsertData(playerId)
+                afktime = AFKManager.getAfkTotalSeconds(playerId)
         );
 
 
@@ -122,7 +124,7 @@ public class PlayerActionListener implements Listener {
         onTNTPrime.resetCounters(playerId);
         PlayerChunkLoadListener.resetChunkLoadCounts(playerId);
         onRedstoneTracker.resetCounters(playerId);
-        onEssentialsAFK.resetCounters(playerId);
+        AFKManager.resetAfkCounters(playerId);
         onBlockBreak.resetCounters(playerId);
     }
 
