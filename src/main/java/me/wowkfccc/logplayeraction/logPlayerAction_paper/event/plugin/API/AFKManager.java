@@ -16,14 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * AFK 狀態管理器：
- * - recordActivity：玩家任何行為時呼叫，重置計時並處理離開 AFK
- * - checkAllAfk：定時掃描超過閾值未動玩家，標記進入 AFK
- * - getAfkTotalSeconds：取得累計 AFK 秒數 (int)
- * - resetAfkCounters：重置單一玩家資料
- * - clear：清除所有資料
- */
 public class AFKManager {
     private static final Map<UUID, Long> lastActivity = new HashMap<>();
     private static final Map<UUID, Boolean> isAfk = new HashMap<>();
@@ -33,11 +25,6 @@ public class AFKManager {
     // 閾值：300秒
     private static final long THRESHOLD_MS = 300L * 1000L;
 
-    /**
-     * 玩家有任何行為時呼叫
-     * - 如果玩家正在 AFK，先計算本次 AFK 持續並累加
-     * - 重置最後活動時間
-     */
     public static void recordActivity(Player p) {
         UUID uuid = p.getUniqueId();
         long now = System.currentTimeMillis();
@@ -79,6 +66,17 @@ public class AFKManager {
      */
     public static int getAfkTotalSeconds(UUID uuid) {
         long total = afkTotalSeconds.getOrDefault(uuid, 0L);
+        long now = System.currentTimeMillis();
+
+        if (Boolean.TRUE.equals(isAfk.get(uuid))) {
+            long start = afkStartTime.getOrDefault(uuid, now);
+            long currentDuration = (now - start) / 1000;
+            total += currentDuration;
+
+            afkTotalSeconds.put(uuid, 0L);
+            afkStartTime.put(uuid, now);
+        }
+
         return (int) total;
     }
 

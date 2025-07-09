@@ -63,7 +63,6 @@ public class PlayerSessionListener implements Listener {
         if (old != null) old.cancel();
         GlobalRegionScheduler globalScheduler = plugin.getServer().getGlobalRegionScheduler();
 
-        // 3. 用 runAtFixedRate() 回傳的一定是 ScheduledTask
         ScheduledTask newTask = globalScheduler.runAtFixedRate(
                 plugin,
                 (ScheduledTask task) -> {
