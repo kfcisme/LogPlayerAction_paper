@@ -88,7 +88,7 @@ public class PlayerActionListener implements Listener {
                 teleportCounts = onPlayerTeleport.SendInsertData(playerId),
                 chunkLoadCounts = PlayerChunkLoadListener.SendInsertData(playerId),
                 redstoneCounts = onRedstoneTracker.SendInsertData(playerId),
-                afktime = AFKManager.getAfkTotalSeconds(playerId)
+                afktime = AFKManager.consumeAfkTotalSeconds(playerId)
         );
 
 
@@ -124,7 +124,7 @@ public class PlayerActionListener implements Listener {
         onTNTPrime.resetCounters(playerId);
         PlayerChunkLoadListener.resetChunkLoadCounts(playerId);
         onRedstoneTracker.resetCounters(playerId);
-        AFKManager.resetAfkCounters(playerId);
+//        AFKManager.resetAfkCounters(playerId);
         onBlockBreak.resetCounters(playerId);
     }
 

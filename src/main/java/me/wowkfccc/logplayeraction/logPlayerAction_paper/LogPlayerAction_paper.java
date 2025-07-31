@@ -73,12 +73,6 @@ public final class LogPlayerAction_paper extends JavaPlugin {
             sessionListener.cancelAllTasks();
             getServer().getPluginManager().registerEvents(new AFKActivityListener(), this);
                 if (getConfig().getBoolean("Enable.AFK", false) ) {
-//                    getServer().getGlobalRegionScheduler().runAtFixedRate(
-//                            this,
-//                            task -> onEssentialsAFK.tickAll(),
-//                            20L, 20L // 延遲1秒啟動，每秒執行一次
-//                    ); // 每秒跑一次
-//                    getServer().getPluginManager().registerEvents(new AFKActivityListener(), this);
                     getServer().getGlobalRegionScheduler().runAtFixedRate(
                             this,
                             task ->

@@ -75,7 +75,7 @@ public class PlayerSessionListener implements Listener {
                                     + counts.dmgByEntity + counts.expChange + counts.explosion + counts.furnaceExtract + counts.interact
                                     + counts.cmdSend + counts.invClose + counts.invOpen + counts.itemDrop + counts.levelChange
                                     + counts.multiPlace + counts.playerDeath + counts.quit + counts.respawn
-                                    + counts.teleport + counts.tntPrime) > 0) {
+                                    + counts.teleport + counts.tntPrime ) > 0) {
 
                        plugin.getLogger().info("正在為玩家 " + p.getName() + " 寫入行為資料，共 " + counts.pickup + counts.blockBreak + counts.chat
                                    + counts.blockDamage + counts.blockPlace + counts.bucketFill + counts.bucketEmpty + " 項");
