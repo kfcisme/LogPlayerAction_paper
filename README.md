@@ -53,3 +53,4 @@ me/wowkfccc/logplayeraction/
 
 ---
 
+[Fabric 版本](https://github.com/kfcisme/LogPlayerAction_Fabric/tree/master)
